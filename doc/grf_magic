@@ -1,0 +1,17 @@
+# Gravity Ragnarok File
+# This is in fact a file container (compressed using zlib) for game files
+# There are 3 known versions of those files, which are 0x120 0x130 and 0x200
+# Difference in 0x200 files: the file index is now unencrypted, but also compressed
+# 
+# filecount = filecount - seed - 7
+# Some programs (grf factory?) tend to use value 15724 as seed...
+0 string    Master\ of\ Magic\0 Gravity GRF file
+> 16 string \0\0\0\0\0\0\0\0\0\0\0\0\0\0 without encryption
+> 16 string !\0\0\0\0\0\0\0\0\0\0\0\0\0\0
+>> 16 string !\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0a\x0b\x0c\x0d\x0e (corrupted)
+> 42 leshort x (version 0x%x)
+> 34 lelong 0
+>> 38 lelong-7 x containing %u files
+> 34 lelong >0
+>> 38 lelong-7 x containing (%u -
+>> 34 lelong x %u) files
